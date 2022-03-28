@@ -1,0 +1,71 @@
+<%- include('partials/header') -%>
+
+<main>
+    <% let orderedComments = [...comments].sort((a, b) => b.score - a.score); %> 
+    <% orderedComments.forEach(comment => { %>
+ 
+        <%- include('partials/comment', {
+            id: comment.id,
+            image: comment.user.image,
+            username: comment.user.username,
+            timeCreated: comment.createdAt,
+            score: comment.score,
+            content: comment.content,
+            commentId : comment.id
+        })%>
+
+        <%- include('partials/compose-reply', {commentId: comment.id}) %>   
+
+        <div class="replies">
+    
+            <% comment.replies.forEach(reply => { %>
+            
+                <%- include('partials/reply', {
+                    image: reply.user.image,
+                    username: reply.user.username,
+                    timeCreated: reply.createdAt,
+                    score: reply.score,
+                    replyingTo: reply.replyingTo,
+                    content: reply.content,
+                    replyId: reply.id,
+                    commentId : comment.id
+                }) %>
+                
+                <%- include('partials/compose-reply', {commentId: comment.id}) %>   
+
+                
+                <% }); %>
+                
+            <div class="modal">
+                <div class="modal__wrap">
+                    <div class="modal__inner">
+                        <h3>Delete reply</h3>
+                        <p>Are you sure you want to delete this reply? This will remove the reply and cannot be undone.</p>
+                        <div class="modal__buttons">
+                            <button class="js-cancel">NO, CANCEL</button>
+                            <form action="/delete-reply" method="POST">
+                                <input type="hidden" name="commentId" value="<%- comment.id %>">
+                                <input type="hidden" name="replyIndex" id="replyIndex" value="">
+                                <button type="submit">YES, DELETE</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <% if(comment.replies.length > 2) { %>
+
+            <button class="load-btn js-load-replies">Load more replies</button>
+
+        <% } %>
+        
+        <% }); %>    
+            
+    <%- include('partials/compose-comment') %>
+
+</main>
+
+<%- include('partials/attribution') -%>
+<%- include('partials/footer') -%>

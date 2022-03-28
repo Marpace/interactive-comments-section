@@ -1,0 +1,39 @@
+{
+  "name": "interactive-comments-section-main",
+  "version": "1.0.0",
+  "description": "Frontend Mentor coding challenge",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marpace/interactive-comments-section-main.git"
+  },
+  "author": "Pablo Almonacid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marpace/interactive-comments-section-main/issues"
+  },
+  "homepage": "https://github.com/Marpace/interactive-comments-section-main#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "connect-flash": "^0.1.1",
+    "connect-livereload": "^0.6.1",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "livereload": "^0.9.3",
+    "mongoose": "^6.2.6",
+    "passport": "^0.5.2",
+    "passport-local-mongoose": "^6.3.0",
+    "path": "^0.12.7"
+  }
+}

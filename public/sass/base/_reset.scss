@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $very_light_grey;
+}
+main {
+    @include flex_centered(column);
+    padding: 50px 5%;
+}

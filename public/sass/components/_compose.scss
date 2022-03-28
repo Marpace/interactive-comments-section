@@ -1,0 +1,70 @@
+.compose {
+    @include flex_centered(row);
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    background-color: $white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    z-index: 10;
+    @include responsive($tablet){
+        justify-content: flex-end;
+        padding: 20px;
+    }
+
+    form {
+        @include flex_centered(column);
+        gap: 20px;
+        width: 100%;
+        @include responsive($tablet){
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 15px;
+            width: 93%;
+        }
+
+        .compose-content {
+            width: 100%;
+            border: 1px solid $light_grey;
+            padding: 15px 20px;
+            border-radius: 7px;
+            font-size: 16px;
+            font-family: "Rubik", sans-serif;
+            color: $greyish_blue;
+            resize: none;
+        }
+        .compose-content:focus {
+            outline: 1px solid $moderate_blue;
+        }
+        button {
+            padding: 15px 31px;
+            font-size: 17px;
+            font-weight: 500;
+            align-self: flex-end;
+            font-family: "Rubik", sans-serif;
+            border-radius: 7px;
+            border: none;
+            background-color: $moderate_blue;
+            color: $white;
+            cursor: pointer;
+            transition: .2s;
+            @include responsive($tablet){
+                align-self: flex-start;
+            }
+
+        }
+        button:hover {
+            background-color: $light_greyish_blue;
+        }
+    }
+    img {
+        position: absolute;
+        width: 32px;
+        left: 15px;
+        bottom: 20px;
+        @include responsive($tablet){
+            top: 22px;
+        }
+    }
+}

@@ -1,0 +1,80 @@
+<article class="comment">
+    <header class="comment__author">
+        <img class="comment__img" src=<%= image %> alt="">
+        <h2 class="author__name"><%= username %></h2>
+
+        <% if(username === "juliusomo") { %>
+
+            <div class="tag">
+                <p>you</p>
+            </div>
+
+        <% } %>
+        <input type="hidden" class="timeCreated" value="<%= timeCreated %>">
+        <p class="comment__time js-time-created"></p>
+    </header>
+    <div class="comment__score">
+        <form action="/upvote" method="post">
+            <input type="hidden" name="commentId" value="<%-commentId%>">
+            <input type="hidden" name="score" value="<%-score%>">
+            <button>
+                <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg"><path d="M6.33 10.896c.137 0 .255-.05.354-.149.1-.1.149-.217.149-.354V7.004h3.315c.136 0 .254-.05.354-.149.099-.1.148-.217.148-.354V5.272a.483.483 0 0 0-.148-.354.483.483 0 0 0-.354-.149H6.833V1.4a.483.483 0 0 0-.149-.354.483.483 0 0 0-.354-.149H4.915a.483.483 0 0 0-.354.149c-.1.1-.149.217-.149.354v3.37H1.08a.483.483 0 0 0-.354.15c-.1.099-.149.217-.149.353v1.23c0 .136.05.254.149.353.1.1.217.149.354.149h3.333v3.39c0 .136.05.254.15.353.098.1.216.149.353.149H6.33Z"/></svg>
+            </button>
+        </form>
+        <p><%= score %></p>
+        <form action="/downvote" method="post">
+            <input type="hidden" name="commentId" value="<%-commentId%>">
+            <input type="hidden" name="score" value="<%-score%>">
+            <button>
+                <svg width="11" height="3" xmlns="http://www.w3.org/2000/svg"><path d="M9.256 2.66c.204 0 .38-.056.53-.167.148-.11.222-.243.222-.396V.722c0-.152-.074-.284-.223-.395a.859.859 0 0 0-.53-.167H.76a.859.859 0 0 0-.53.167C.083.437.009.57.009.722v1.375c0 .153.074.285.223.396a.859.859 0 0 0 .53.167h8.495Z"/></svg>
+            </button>
+        </form>
+    </div>
+
+    <% if(username === "juliusomo"){ %>
+
+        <div class="comment__delete js-comment-delete">
+            <svg width="12" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M1.167 12.448c0 .854.7 1.552 1.555 1.552h6.222c.856 0 1.556-.698 1.556-1.552V3.5H1.167v8.948Zm10.5-11.281H8.75L7.773 0h-3.88l-.976 1.167H0v1.166h11.667V1.167Z"/></svg>
+            <p>Delete</p>
+        </div>
+        <div class="comment__reply js-edit-comment">
+            <svg class="edit-icon" width="14" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M13.479 2.872 11.08.474a1.75 1.75 0 0 0-2.327-.06L.879 8.287a1.75 1.75 0 0 0-.5 1.06l-.375 3.648a.875.875 0 0 0 .875.954h.078l3.65-.333c.399-.04.773-.216 1.058-.499l7.875-7.875a1.68 1.68 0 0 0-.061-2.371Zm-2.975 2.923L8.159 3.449 9.865 1.7l2.389 2.39-1.75 1.706Z"/></svg>
+            <svg class="cancel-icon" width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 1.5L1.5 4L5.5 7.5L1.5 10.5L4 13L8 9L12 13L14 10.5L10 7.5L14 4L12 1.5L8 5.5L4 1.5Z" /></svg>
+            <p class="edit-text">Edit</p>              
+            <p class="cancel-text">Cancel</p>              
+        </div>
+
+        <form action="/update-comment" method="POST" class="edit-form">
+            <input type="hidden" name="commentId" value="<%-commentId%>">
+            <textarea name="editedContent" class="compose-content js-edited-content" cols="30" rows="5"><%-content%></textarea>
+            <button type="submit">UPDATE</button>
+        </form>
+        <div class="modal">
+            <div class="modal__wrap">
+                <div class="modal__inner">
+                    <h3>Delete comment</h3>
+                    <p>Are you sure you want to delete this comment? This will remove the comment and cannot be undone.</p>
+                    <div class="modal__buttons">
+                        <button class="js-cancel">NO, CANCEL</button>
+                        <form action="/delete-comment" method="POST">
+                            <input type="hidden" name="commentId" value="<%- commentId %>">
+                            <button type="submit">YES, DELETE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <% } else { %>
+
+    <div class="comment__reply js-reply">
+        <svg class="reply-icon" width="14" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z"/></svg>
+        <a href="#"></a>
+        <p class="reply-text">Reply</p>
+    </div>
+
+    <% } %>
+    <div class="comment__content js-content">
+        <p><%= content %></p>
+    </div>
+</article>
